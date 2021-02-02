@@ -1,7 +1,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #GIT Tue  2 Feb 2021 16:53:31 AEDT
 # Path to your oh-my-zsh installation.
-#rsync
 export ZSH="/Users/roberto/.oh-my-zsh"
 
 autoload zmv
