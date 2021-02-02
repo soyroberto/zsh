@@ -250,3 +250,4 @@ fi
 }
 
 cbing 
+cd ~ ; rsync -u .zshrc zsh
