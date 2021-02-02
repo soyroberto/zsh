@@ -225,7 +225,6 @@ return 0
     fi
 
 }
-
 ranes () { 
 #http://zsh.sourceforge.net/Intro/intro_4.html > randline
 export ff="/Users/roberto/OneDrive/Azure/palabras/es.out"
