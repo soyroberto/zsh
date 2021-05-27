@@ -150,6 +150,10 @@ alias sc="source $HOME/.zshrc"
 alias vix=" /usr/bin/vim $HOME/.zshrc"
 #alias ?="/usr/local/bin/spotify status"
 alias enn="/Applications/dictionary"
+alias p="/usr/bin/python3"
+alias pes="p /Users/roberto/OneDrive/Azure/palabras/es.py"
+alias xl="exa --long -snew"
+#alias pyy="pes | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word'"
 #https://unix.stackexchange.com/questions/240751/choose-random-string-from-a-few-and-set-it-as-a-variable
 a=("b" "g" "d" "p" "s" "t" "w" "y")
 Na=$((${#a[@]}-1))
@@ -172,10 +176,8 @@ setopt CORRECT_ALL
 es() {
 
     export fout="/Users/roberto/OneDrive/Azure/palabras"
-	#cd $fout
-    if [ "$1" != "" ] # or better, if [ -n "$1" ]
+    if [ "$1" != "" ] 
     then
-	#printf "$1\t" >&1 >> es.out 2>&1 
 	printf "$1\t" >&1 >> $fout/es.out 2>&1 
 
 wget -qO- https://dle.rae.es/$1 | egrep '<meta property="og:description"' | sed 's/\<meta.*://g' | sed 's/">//g' | sed 's/description.*\=//g' | sed 's/"//g'  >&1 >> $fout/es.out 2>&1 
@@ -207,7 +209,6 @@ fi
 
 }
 que () {
-#for p in `cat $1 | awk '{ print $1}'`; do es $p; sleep 5; done
 for p in `cat $1 | awk '{ print $1}'`; do exp2 $p; sleep 5; done
 } 
 
@@ -234,11 +235,25 @@ export ff="/Users/roberto/OneDrive/Azure/palabras/es.out"
 alias ales="ranes"
 ales
 
+
+alex () { 
+#si $0 solo imprime 1 palabra, sino imprime el parámetro 🤠
+#falta eliminar números de la salida
+#echo "$@"
+if [[ "$@" -eq 0 ]]; then
+	integer n=1
+else
+	integer n="$@"
+fi
+
+export fex="/Users/roberto/OneDrive/Azure/palabras/pyes.txt"
+	grep -wo "[[:alnum:]]\+" $fex | sort | uniq -u | shuf -n$n
+}
+
 cbing () {
 export insta="/Users/roberto/OneDrive/Fotos(oficial)/Instagram"
 export bing="/Volumes/[C] W10x/Users/rober/AppData/Local/Microsoft/BingWallpaperApp/WPImages"
 if [[ ! -a $bing ]]; then
-#echo "$bing don't exist"
 return 0
 else
 cd $bing
@@ -250,3 +265,40 @@ fi
 
 cbing 
 cd ~ ; rsync -u .zshrc zsh
+
+pyes () {
+
+#validar si existe $1 https://unhexium.net/zsh/how-to-check-variables-in-zsh/
+if (( ${+1})); then
+	#solo si la palabra existe se formatea
+	export pyes="/Users/roberto/OneDrive/Azure/palabras"
+	pes $1 | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word' >&1 >> $pyes/pyes.txt 2>&1 
+else
+	print "Uso: pep <palabra> 😬😡🤔👾🙀"
+fi
+
+}
+
+fex () { 
+
+if (( ${+1})); then
+#primero usar fex y no pyes
+	export peso="/Users/roberto/OneDrive/Azure/palabras/pyes.txt"
+	pa=\"$1\" #tiene que buscar con " en el archivo
+	bpal=$1 #mismo parámetro sin " y así no se hace la sustitución
+	#el sed no lleva ''
+	gsed -n /^$pa/,/^$pa/p $peso
+	cc=`gsed -n /^$pa/,/^$pa/p $peso | wc -l` #si la palabra no existe entonces la busca
+	#echo $cc
+		if [ $cc -eq 0 ]; then 
+		#echo $bpal
+		#ver si se puede usar el 404 de pes (alias)
+		pyes $bpal
+		fi
+
+
+fi
+}
+
+# added by Snowflake SnowCD installer
+export PATH=/opt/snowflake/snowcd:$PATH
