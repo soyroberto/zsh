@@ -304,11 +304,11 @@ fi
 
 ux () {
 
+#ejemplos de uso para palabras en español, ejem.py
 #validar si existe $1 https://unhexium.net/zsh/how-to-check-variables-in-zsh/
 if (( ${+1})); then
-	#solo si la palabra existe se formatea
-	#export pyes="/Users/roberto/OneDrive/Azure/palabras"
-	# original pes $1 | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word' >&1 >> $pyes/pyes.txt 2>&1 
+# original pes $1 | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word' >&1 >> $pyes/pyes.txt 2>&1 
+#Fri 28 May 2021 15:05:24 AEST
 	pex $1 | jq '.results[0].lexicalEntries[0].entries[0].senses[].examples[].text'
 else
 	print "Uso: pep <palabra> 😬😡🤔👾🙀"
