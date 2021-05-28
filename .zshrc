@@ -152,6 +152,7 @@ alias vix=" /usr/bin/vim $HOME/.zshrc"
 alias enn="/Applications/dictionary"
 alias p="/usr/bin/python3"
 alias pes="p /Users/roberto/OneDrive/Azure/palabras/es.py"
+alias pex="p /Users/roberto/OneDrive/Azure/palabras/ejem.py"
 alias xl="exa --long -snew"
 alias cx="cd /Users/roberto/OneDrive/Azure/palabras"
 #alias pyy="pes | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word'"
@@ -301,5 +302,18 @@ if (( ${+1})); then
 fi
 }
 
+ux () {
+
+#validar si existe $1 https://unhexium.net/zsh/how-to-check-variables-in-zsh/
+if (( ${+1})); then
+	#solo si la palabra existe se formatea
+	#export pyes="/Users/roberto/OneDrive/Azure/palabras"
+	# original pes $1 | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word' >&1 >> $pyes/pyes.txt 2>&1 
+	pex $1 | jq '.results[0].lexicalEntries[0].entries[0].senses[].examples[].text'
+else
+	print "Uso: pep <palabra> 😬😡🤔👾🙀"
+fi
+
+}
 # added by Snowflake SnowCD installer
 export PATH=/opt/snowflake/snowcd:$PATH
