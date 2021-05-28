@@ -153,6 +153,7 @@ alias enn="/Applications/dictionary"
 alias p="/usr/bin/python3"
 alias pes="p /Users/roberto/OneDrive/Azure/palabras/es.py"
 alias xl="exa --long -snew"
+alias cx="cd /Users/roberto/OneDrive/Azure/palabras"
 #alias pyy="pes | jq '.results[0].word,.results[].lexicalEntries[].entries[].senses[].definitions[],.results[0].word'"
 #https://unix.stackexchange.com/questions/240751/choose-random-string-from-a-few-and-set-it-as-a-variable
 a=("b" "g" "d" "p" "s" "t" "w" "y")
