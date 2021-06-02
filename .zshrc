@@ -311,9 +311,10 @@ if (( ${+1})); then
 #Fri 28 May 2021 15:05:24 AEST
 	pex $1 | jq '.results[0].lexicalEntries[0].entries[0].senses[].examples[].text'
 else
-	print "Uso: pep <palabra> 😬😡🤔👾🙀"
+	print "Uso: ux <palabra> 😬😡🤔👾🙀"
 fi
 
 }
 # added by Snowflake SnowCD installer
 export PATH=/opt/snowflake/snowcd:$PATH
+#ln -s ~/.zshrc zsh/.zshrc < para mantener en GIT y sincronizado
