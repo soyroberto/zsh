@@ -130,6 +130,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls -aFG"
+alias ip="wget -qO- https://ipecho.net/plain ; echo"
 alias 5="ls -lth | head -5"
 alias hh="history"
 alias ranpwd="/usr/bin/openssl rand -base64 16"
