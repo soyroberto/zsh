@@ -2,7 +2,6 @@
 #GIT Tue  2 Feb 2021 16:53:31 AEDT
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/roberto/.oh-my-zsh"
-
 autoload zmv
 autoload -Uz zcalc
 # Set name of the theme to load --- if set to "random", it will
@@ -10,12 +9,6 @@ autoload -Uz zcalc
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-#ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-#ZSH_THEME_RANDOM_CANDIDATES=( "pygmalion" "muse" "sorin" )
 #ZSH_THEME="avit"
 
 #--- prom
@@ -316,6 +309,30 @@ else
 fi
 
 }
+
+rmux () {
+#faltan variables y verificar solo ejecutar cuando el archivo ha sido modificado
+cd /Users/roberto/OneDrive/Azure/palabras
+sed -i .bak -e 's/^jq:.*//' pyes.txt # > funciona mejor pero deja línea blanca 
+
+sed -i .bak -e 's/^parse.*//' pyes.txt #> mismo coso línea blanca 
+
+#borrar líneas en blanco
+sed -i .bak -e '/^$/d' pyes.txt 
+
+}
+
+zx () {
+if diff $HOME/.zshrc ~/zsh/.zshrc; then  
+	return
+else #copia solo si fue actualizdo el .zshrc en $HOME
+   cp $HOME/.zshrc ~/zsh/.zshrc
+fi 
+
+} 
+
+zx
+#rmux
+
 # added by Snowflake SnowCD installer
 export PATH=/opt/snowflake/snowcd:$PATH
-#ln -s ~/.zshrc zsh/.zshrc < para mantener en GIT y sincronizado
