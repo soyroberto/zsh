@@ -310,7 +310,7 @@ fi
 
 }
 
-rmux () {
+rmpy () {
 #faltan variables y verificar solo ejecutar cuando el archivo ha sido modificado
 cd /Users/roberto/OneDrive/Azure/palabras
 sed -i .bak -e 's/^jq:.*//' pyes.txt # > funciona mejor pero deja línea blanca 
@@ -332,7 +332,26 @@ fi
 } 
 
 zx
-#rmux
+
+fep () {
+
+if (( ${+1})); then
+	export peso="/Users/roberto/OneDrive/Azure/palabras/pyes.txt"
+	pa=\"$1\" #tiene que buscar con " en el archivo
+	bpal=$1 #mismo parámetro sin " y así no se hace la sustitución
+	#el sed no lleva ''
+	gsed -n /^$pa/,/^$pa/p $peso
+	cc=`gsed -n /^$pa/,/^$pa/p $peso | wc -l` #si la palabra no existe entonces la busca
+		if [ $cc -eq 0 ]; then 
+		echo Busco $bpal
+		#ver si se puede usar el 404 de pes (alias)
+		pyes $bpal
+		fi
+
+
+fi
+
+}
 
 # added by Snowflake SnowCD installer
 export PATH=/opt/snowflake/snowcd:$PATH
